@@ -4,7 +4,7 @@ import HomeBackground from "../img/background1.avif";
 import '../style/MenuStyle/css/style.css';
 import '../style/MenuStyle/css/bootstrap.css'
 import '../style/MenuStyle/css/responsive.css'
-import { Helmet } from "react-helmet";
+
 
 function Menu() {
     return (
@@ -19,7 +19,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-1.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280779/Jewels%20store_%20Product/Italian_silver_necklace_Lux_Co_s3a2w4.png" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -34,7 +34,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-2.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280704/Jewels%20store_%20Product/Couple_White_Gold_Ring_Lux_Co_ydpj8p.jpg" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -49,7 +49,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-3.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280780/Jewels%20store_%20Product/Dainty_Thin_Bar_Earring_By_Lux_Co_zfoko8.png" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -65,22 +65,22 @@ function Menu() {
                 <div className="container">
                     <div className="heading_container">
                         <h2>
-                            Our Jewellery Price
+                            Our Jewellery Hot Price
                         </h2>
                     </div>
                     <div className="price_container">
                         <div className="box">
                             <div className="name">
                                 <h6>
-                                    Diamond Ring
+                                    Diamond
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/p-1.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280780/Jewels%20store_%20Product/Gold_Diamond_Ring_14K_By_Lux_Co_hhxwdy.png" alt=""/>
                             </div>
                             <div className="detail-box">
                                 <h5>
-                                    $<span>1000.00</span>
+                                    $<span>1099.00</span>
                                 </h5>
                                 <a href="">
                                     Buy Now
@@ -90,15 +90,15 @@ function Menu() {
                         <div className="box">
                             <div className="name">
                                 <h6>
-                                    Diamond Ring
+                                    Gold
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-2.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280779/Jewels%20store_%20Product/Gold_Necklace_18K_Lux_Co_pfcwen.png" alt=""/>
                             </div>
                             <div className="detail-box">
                                 <h5>
-                                    $<span>1000.00</span>
+                                    $<span>599.00</span>
                                 </h5>
                                 <a href="">
                                     Buy Now
@@ -108,15 +108,15 @@ function Menu() {
                         <div className="box">
                             <div className="name">
                                 <h6>
-                                    Diamond Ring
+                                    Silver
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-3.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1666280703/Jewels%20store_%20Product/Couple_Rings_Friends_By_Lux_Co_pvm4vl.png" alt=""/>
                             </div>
                             <div className="detail-box">
                                 <h5>
-                                    $<span>1000.00</span>
+                                    $<span>99.00</span>
                                 </h5>
                                 <a href="">
                                     Buy Now
