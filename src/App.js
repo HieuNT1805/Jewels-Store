@@ -7,7 +7,8 @@ import About from "./pages/About";
 import Navbar from "./components/navbar";
 import Menu from "./pages/Menu"
 import Login from "./pages/Login"
-import {Route, Redirect, Switch} from "react-router-dom";
+import MaterialTypeProducts from "./pages/MaterialTypeProducts";
+import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom";
 
 
 function App() {
@@ -20,8 +21,10 @@ function App() {
             <Route exact path= "/contact"  component={Contact} />
             <Route exact path= "/about"  component={About} />
             <Route exact path= "/login"  component={Login} />
+            <Route path = "/product/:page" component={MaterialTypeProducts}/>
         </Switch>
         <Footer/>
+
      </>
   );
 }
