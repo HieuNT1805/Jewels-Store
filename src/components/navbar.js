@@ -13,7 +13,15 @@ function Navbar({totalItems}, props) {
     const toggleNavbar = () => {
         setOpenLinks(!openLinks);
     }
-    
+    //lay so order
+    const [countOrder, setCountOrder] = useState({count:0}); //set gia tri mac dinh cua so don hang
+    //du lieu thay doi thi no render lai du lieu cua so don hang
+    useEffect(()=>{
+      axios.get("https://jewel-store-pj.herokuapp.com/api/orders")
+      .then((res) => {
+        setCountOrder(res.data.count)
+      })
+    });
   return (
     <div className="navbar" id={openLinks ? "open" : "close"}>
         <div className="leftside">
