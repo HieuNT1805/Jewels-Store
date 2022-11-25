@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Menu from "./pages/Menu";
+import CartButtons from "./components/CartButtons";
 import {Route, Switch} from "react-router-dom";
 import axios from "axios";
 
@@ -24,6 +25,7 @@ function App() {
             <Route exact path= "/about"  component={About} />
             <Route exact path= "/register"  component={Register} />
             <Route exact path= "/login" component={Login}/>
+            <Route exact path= "/cart" component = {CartButtons} />
         </Switch>
         <Footer/>
      </>

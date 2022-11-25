@@ -1,20 +1,20 @@
 import Axios from "axios";
 import authHeader from "./auth_header";
 
-const api="https://ex-api-nodejs.herokuapp.com/api/auth/"
+const api="https://jewel-store-pj.herokuapp.com/api/auth/"
 
 const register=(firstname, lastname, email, username, password ) => {
-    return Axios.post(api+"register", {
+    return Axios.post(api+"signup", {
         firstname, lastname, email, username, password 
     })
 }
 const login=(username, password) => {
-    return Axios.post(api+"login", {
+    return Axios.post(api+"signin", {
         username, password
     }).then((response) => {
         if(response.data.accessToken)
         {
-            localStorage.setItem("user", JSON.stringify(response.data))
+            localStorage.setItem("user", JSON.stringify(response.data)) //luu return cua api vao local storage trong  tab application tren inspect
         }
         return response.data
     })

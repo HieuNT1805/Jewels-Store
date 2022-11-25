@@ -16,11 +16,11 @@ function CartButtons({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) {
       <Link className="link" to="/menu">start adding some</Link>!
     </Typography>
   );
-  if (!cart.line_items) return 'Loanding';
+  if (!cart.products) return 'Loanding';
   const renderCart = () => (
     <>
       <Grid container spacing ={3}>
-        {cart.line_items.map((lineItem)=> (
+        {cart.products.map((lineItem)=> (
           <Grid item xs={12} sm={4} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
             </Grid>
@@ -37,6 +37,7 @@ function CartButtons({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) {
   )
   return (
     <Container>
+      <p>hello</p>
       <div className="toolbar"/>
       <Typography className="title" variant="h5" gutterBottom>Your Shopping Cart</Typography>
       {!cart.line_items.length ? renderEmptyCart(): renderCart()}
