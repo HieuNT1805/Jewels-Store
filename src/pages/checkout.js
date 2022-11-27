@@ -1,15 +1,28 @@
-import React, {useState} from 'react'
+import Reactget, {useEffect,useState} from 'react'
 import HomeBackground from "../img/background1.avif";
 import "../style/checkout.css";
 import {Link, useHistory} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import authService from '../service/user.service';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import getOders from '../service/order.service'
+
 
 function Checkout() {
   let history=useHistory();
   const [message, setMessage] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm({mode: 'onBlur'});
+  
+  ////
+  const [data, setData] = useState({orders:[]}); 
+  useEffect(() => {
+    getOders()
+    .then((res) =>{
+      setData(res.data)
+    })
+  }, [])
+  ////
+
   const onSubmit = data => {
       const firstname=data.firstname;
       const lastname=data.lastname;
@@ -32,6 +45,7 @@ function Checkout() {
         }
       )
    console.log(data)};
+   var totalCartPrice = 0;
 
   return (
     <body class="bg-light">
@@ -46,45 +60,40 @@ function Checkout() {
               <span class="text-primary">Your cart</span>
               <span class="badge bg-primary rounded-pill">3</span>
             </h4>
-            <ul class="list-group mb-3">
-              <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 class="my-0">Product name</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$12</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 class="my-0">Second product</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$8</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 class="my-0">Third item</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$5</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                  <h6 class="my-0">Voucher</h6>
-                  <small>EXAMPLECODE</small>
-                </div>
-                <span class="text-success">−$5</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong>$20</strong>
-              </li>
-            </ul>
+            <div className="col-md-5">
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="50%">Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {data.orders && data.orders.map((order,orders) =>  {
+                    totalCartPrice += order.quantity* order.product.price;
+                            return (
+                                <tr key={order._id}>
+                                 <td>{order.product.name}</td>
+                                 <td>{order.product.price}</td>
+                                  <td>{order.quantity}</td>
+                                  <td>{order.quantity* order.product.price}</td>
+                                </tr>
+                            )
+                        })}
+                        <tr>
+                          <td colSpan="2" className="text-end fw-bold">Grand Total</td>
+                          <td colSpan="2" className="text-end fw-bold">{totalCartPrice}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
     
             <form class="card">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Voucher"/>
-            <button type="submit" class="btn btn-secondary">Add</button>
+            <input type="text"  placeholder="Voucher"/>
+            <button type="submit" class="--btn --btn-secondary">Add</button>
           </div>
         </form>
           </div>
