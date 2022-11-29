@@ -1,4 +1,4 @@
-import Reactget, {useEffect,useState} from 'react'
+import React, {useEffect,useState} from 'react'
 import HomeBackground from "../img/background1.avif";
 import "../style/checkout.css";
 import {Link, useHistory} from 'react-router-dom';
@@ -6,13 +6,18 @@ import { useForm } from "react-hook-form";
 import authService from '../service/user.service';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import getOders from '../service/order.service'
+import swal from 'sweetalert';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
 function Checkout() {
   let history=useHistory();
   const [message, setMessage] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm({mode: 'onBlur'});
-  
+  const [error, setError] = useState([]);
+
   ////
   const [data, setData] = useState({orders:[]}); 
   useEffect(() => {
@@ -47,6 +52,81 @@ function Checkout() {
    console.log(data)};
    var totalCartPrice = 0;
 
+
+   
+    // Paypal Code
+    const createOrder = (data, actions) =>{
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: totalCartPrice,
+              },
+            },
+          ],
+        });
+    };
+    const [checkoutInput, setCheckoutInput] = useState({
+      firstname: '',
+      lastname: '',
+      phone: '',
+      email: '',
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+  });
+    var orderinfo_data = {
+      firstname: checkoutInput.firstname,
+      lastname: checkoutInput.lastname,
+      phone: checkoutInput.phone,
+      email: checkoutInput.email,
+      address: checkoutInput.address,
+      city: checkoutInput.city,
+      state: checkoutInput.state,
+      zipcode: checkoutInput.zipcode,
+      payment_mode: 'Paid by PayPal',
+      payment_id: '',
+  }
+
+    const onApprove = (data, actions) => {
+        // return actions.order.capture();
+        return actions.order.capture().then(function(details) {
+            console.log(details);
+            orderinfo_data.payment_id = details.id;
+
+            axios.post(`/api/place-order`, orderinfo_data).then(res=>{
+                if(res.data.status === 200)
+                {
+                    swal("Order Placed Successfully",res.data.message,"success");
+                    setError([]);
+                    history.push('/thank-you');
+                }
+                else if(res.data.status === 422)
+                {
+                    swal("All fields are mandetory","","error");
+                    setError(res.data.errors);
+                }
+            });
+        });
+    };
+    // End-Paypal Code
+
+    axios.post(`/api/validate-order`, data).then(res=>{
+      if(res.data.status === 200)
+      {
+          setError([]);
+          var myModal = new window.bootstrap.Modal(document.getElementById('payOnlineModal'));
+          myModal.show();
+      }
+      else if(res.data.status === 422)
+      {
+          swal("All fields are mandetory","","error");
+          setError(res.data.errors);
+      }
+  });
+
+
   return (
     <body class="bg-light">
     
@@ -58,7 +138,8 @@ function Checkout() {
           <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span class="text-primary">Your cart</span>
-              <span class="badge bg-primary rounded-pill">3</span>
+             <span class="badge bg-primary rounded-pill">{data.count}</span>
+                       
             </h4>
             <div className="col-md-5">
                 <table className="table table-bordered">
@@ -71,7 +152,7 @@ function Checkout() {
                         </tr>
                     </thead>
                     <tbody>
-                    {data.orders && data.orders.map((order,orders) =>  {
+                    {data.orders && data.orders.map((order) =>  {
                     totalCartPrice += order.quantity* order.product.price;
                             return (
                                 <tr key={order._id}>
@@ -99,7 +180,8 @@ function Checkout() {
           </div>
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
+            <form onSubmit={handleSubmit(onSubmit)} className="needs-validation" novalidate>
+
               <div class="row g-3">
                 <div class="col-sm-6">
                   <label for="firstName" class="form-label">First name</label>
@@ -293,6 +375,8 @@ function Checkout() {
       </main>
     
     </div>
+
+           
     </body>
   )
 }
