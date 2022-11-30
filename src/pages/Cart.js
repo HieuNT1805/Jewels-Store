@@ -2,7 +2,8 @@ import React from 'react'
 import {AiFillCloseCircle} from "react-icons/ai"
 import {RiDeleteBin6Line } from "react-icons/ri"
 import { useCart } from 'react-use-cart'
-// import "../style/Cart.css"
+
+import "../style/Cart.css"
 function Cart() {
 	const {	isEmpty,
 			totalUniqueItems,
@@ -43,9 +44,9 @@ function Cart() {
                       <td>
                         <img src={item.img} style={{height: "10rem"}} alt=""></img>
                       </td>
-                      <td >{item.title}</td>
-                      <td >{item.price}</td>
-                      <td >{item.quantity}</td>
+                      <td className="content" >{item.title}</td>
+                      <td className="content">{item.price}</td>
+                      <td className="content">{item.quantity}</td>
                       <td className="">
                         <button style={{border:"3px solid pink" }} className="btn-subtract btn btn-light ms-2  " 
                                 onClick={() => updateItemQuantity(item.id, item.quantity-1)}>
