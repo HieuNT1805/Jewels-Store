@@ -8,9 +8,12 @@ import { AddShoppingCart } from "@mui/icons-material"
 import "../style/MenuItem.css"
 import getProductList from "../service/product.service"
 import axios from 'axios'
+import {useCart} from 'react-use-cart'
 
 const menuItem= ({onAddToCart, product}) => {
     const handleAddToCart = () => onAddToCart(product.id, 1);
+    
+
     return (
         <Card className="card">
             <CardMedia className="card-media" image={product.img} title= {product.name}/>
@@ -27,7 +30,7 @@ const menuItem= ({onAddToCart, product}) => {
                 </IconButton>
             </CardActions>
         </Card>
-
+    
     )
 }
 export default menuItem
