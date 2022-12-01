@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Menu from "./pages/Menu"
 import Login from "./pages/Login"
 import MaterialTypeProducts from "./pages/MaterialTypeProducts";
+import ProductDetail from './pages/ProductDetail';
 import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path= "/about"  component={About} />
             <Route exact path= "/login"  component={Login} />
             <Route path = "/product/:page" component={MaterialTypeProducts}/>
+            <Route path = "/productDetail/:ProductID" component={ProductDetail}/>
         </Switch>
         <Footer/>
 

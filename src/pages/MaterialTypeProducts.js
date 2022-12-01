@@ -55,9 +55,15 @@ function MaterialTypeProducts() {
                                    <h5>
                                        $<span>{product.Price}</span>
                                    </h5>
-                                   <a href="">
+                                   {/* <a href="">
                                        Buy Now
-                                   </a>
+                                   </a> */}
+                                    <Link to={{
+                                        pathname: `/productDetail/${product._id}`,
+                                        state: {ProductID: `${product._id}`}
+                                    }}>
+                                        View Detail
+                                    </Link>
                                </div>
                            </div>
                        ))}
