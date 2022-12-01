@@ -4,57 +4,44 @@ import items from "../components/MenuItem"
 import Categories from '../components/Categories'
 import "../style/Menu.css"
 import { Grid } from '@mui/material'
-import Product from '../components/MenuItem'
-import getProductList from '../service/product.service'
-// const allCategories = ["all", ...new Set(items.map((item) => item.category))];
-// const products = [
-//   {id: 1, name: 'Pearl Rings', price : '15$', category: 'Rings',},
-//   {id:2, name: 'Flower Earing',price: '20$',category: 'Earing',}
-// ]
+// import Product from '../components/MenuItem'
+// import getProductList from '../service/product.service'
+import Item from '../components/Item'
+import products from '../helper/data'
 function Menu() {
-    const [data, setData] = useState({products:[]}); 
-    useEffect(() => {
-      getProductList()
-      .then((res) =>{
-        setData(res.data)
-      })
-    }, [])
-    // const [menuItems, setMenuItems] = useState(items);
-    // const [activeCategory, setActiveCategory] = useState("");
-    // const [categories, setCategories] = useState(allCategories);
-    // const filterItems = (category) => {
-    //     setActiveCategory(category);
-    //     if (category === "all") {
-    //       setMenuItems(items);
-    //       return;
-    //     }
-    //     const newItems = items.filter((item) => item.category === category);
-    //     setMenuItems(newItems);
-    //   };
-    
+    // const [data, setData] = useState({products:[]}); 
+    // useEffect(() => {
+    //   getProductList()
+    //   .then((res) =>{
+    //     setData(res.data)
+    //   })
+    // }, [])
+  // console.warn(data.productData) 
   return (
-    <main className="content">
-      <div className="toolbar"/>
-      <Grid container justify="center" spacing={4}>
-        {data.products && data.products.map((product) => (
-          <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-            <Product product={product}  />
-          </Grid>
-          ))}
-      </Grid>
-    {/* <section className="menu section">
-      <div className="title">
-        <h2>Our Product</h2>
-        <div className="underline"></div>
-      </div>
-      <Categories
-        categories={categories}
-        activeCategory={activeCategory}
-        filterItems={filterItems}
-      />
-      <MenuList items={menuItems} />
-    </section> */}
-  </main>
+  //   <main className="content">
+  //     <div className="toolbar"/>
+  //     <Grid container justify="center" spacing={4}>
+  //       {data.products && data.products.map((product) => (
+  //         <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+  //           <Product product={product}  />
+  //         </Grid>
+  //         ))}
+  //     </Grid>
+  // </main>
+
+  //code Cart moi
+  <>
+    <h1 className="text-center mt-3"> Our Products</h1>
+		<section className="py-4 container">
+			<div className="row justify-content-center">
+				{products.map((item,index)=> {
+					return (
+						<Item img={item.img}  title={item.title} price={item.price} item={item} key={index} />
+					)
+				})}
+			</div>
+		</section>
+  </>
   )
 }
 

@@ -8,7 +8,7 @@ import { RiLinkedinFill } from "react-icons/ri";
 import { ImPhone } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
 
-import "../style/About.css"
+import "../style/about.css"
 import Anh from "../img/lia.jpg"
 /////navbar navbar-expand-lg navbar-light o_colored_level o_cc shadow-sm
 ////tim hieu them bootstap
