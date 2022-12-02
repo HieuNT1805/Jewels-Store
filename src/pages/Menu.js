@@ -22,7 +22,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-1.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669393585/Jewels%20store_%20Product/Diamond%20Jewelry/gvxm00w000058-vong-tay-vang-trang-y-18k-dinh-da-cz-pnj-01_wmfebo.png" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -37,7 +37,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-2.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669393706/Jewels%20store_%20Product/Diamond%20Jewelry/gndrwa60920.5a0-nhan-kim-cuong-pnj-vang-trang-01_pxedal.png" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -52,7 +52,7 @@ function Menu() {
                                 </h6>
                             </div>
                             <div className="img-box">
-                                <img src="images/i-3.png" alt=""/>
+                                <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1668100048/Jewels%20store_%20Product/Diamond%20Jewelry/gb00ddw060279-vo-bong-tai-kim-cuong-vang-trang-18k-pnj-01_fwzuqm.png" alt=""/>
                             </div>
                             <div className="name">
                                 <h5>
@@ -83,7 +83,7 @@ function Menu() {
                                     pathname: "/product/GoldProduct",
                                     state: {material: 'Gold'}
                                 }}>
-                                    <img src="images/p-1.png" alt=""/>
+                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Gold%20Jewelry/gvxmxmy062505-vong-tay-vang-18k-dinh-da-cz-pnj-1_tcuqtq.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>
@@ -99,7 +99,7 @@ function Menu() {
                                     pathname: "/product/DiamondProduct",
                                     state: {material: 'Diamond'}
                                 }}>
-                                    <img src="images/i-2.png" alt=""/>
+                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Diamond%20Jewelry/gnddddw007498-nhan-kim-cuong-vang-trang-14k-disneypnj-sleeping-beauty-01_x5n29j.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>
@@ -115,7 +115,7 @@ function Menu() {
                                     pathname: '/product/SilverProduct',
                                     state: {material: "Silver"}
                                 }}>
-                                    <img src="images/i-3.png" alt=""/>
+                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394363/Jewels%20store_%20Product/Silver%20Jewelry/gmxmxmw000791-mat-day-chuyen-vang-trang-y-18k-dinh-da-cz-pnj-1_fcawus.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>
