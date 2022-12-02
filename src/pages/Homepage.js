@@ -7,7 +7,7 @@ function Home() {
     return (
       <div className="home" style= {{backgroundImage: `url(${HomeBackground})`}}>
             <div className="container-header" >
-                <h1> <b>LUX&CO.</b></h1>
+                <h1> <b className="title-web">LUX&CO.</b></h1>
                 <p>Fine jewelry, revolutionary service</p>
                 <Link to ="/menu">
                   <button>START BUY</button>

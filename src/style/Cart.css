@@ -28,3 +28,8 @@ b {
     width: 130px;
     height: 60px;
 }
+.text-center{
+    margin-top: 150px;
+    margin-bottom: 500px;
+    font-size: 30px;
+}
