@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://jewel-store-pj.herokuapp.com/' //api product
+const url = 'https://jewelstores.onrender.com/' //api product
 
 //function get product from api, return nhieu function
 const getProductList = () => {return axios.get(url + 'api/products')}

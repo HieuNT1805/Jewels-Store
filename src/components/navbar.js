@@ -48,15 +48,16 @@ function Navbar({totalItems}, {onOpen}, props) {
                         <button onClick={toggleNavbar}>
                             <TocIcon/>
                         </button>
-                        <Link to="/cart">Cart</Link>
-        </div>
-        {/* <div className="btn-cart">
+                        {/* <Link to="/cart">Cart</Link> */}
+                        <div className="btn-cart">
           <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-            <Badge badgeContent={countOrder} color="secondary">
+            <Badge badgeContent={countOrder} color="secondary" >
                 <ShoppingCartIcon/>
             </Badge>
           </IconButton>
-        </div>  */}
+        </div> 
+        </div>
+        
     </div>
   )
 }

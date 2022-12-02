@@ -1,12 +1,11 @@
 .container{
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40%;
 }
 .card{
     margin-top: 10px;
     margin-bottom: 1px;
-    width: 90%;
-    height: 30%;
+   
 }
 .btn-add-to-cart{
     margin-top: 10px;
@@ -15,7 +14,7 @@
     color: aliceblue;
     font-size: 20px;
     width: 60%;
-    height: 50%;
+    height: 70%;
     border-radius: 10px;
 }
 .card-body{
@@ -25,7 +24,6 @@
 .card-img-top{
     margin-bottom: 1px;
     align-items: center;
-    
 }
 .card-text {
     font-size: 25px;
