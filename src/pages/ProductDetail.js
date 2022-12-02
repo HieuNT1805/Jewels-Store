@@ -15,7 +15,7 @@ function ProductDetail() {
     const [product, setProduct] = useState([])
     const GetData = async () => {
         console.log(ProductID)
-        const {productData} = await axios.get(`http://localhost:3001/v1/product/${ProductID}`)
+        const {productData} = await axios.get(`http://localhost:3001/v1/products/id/${ProductID}`)
             .then(result => {
                 setProduct(result.data.product)
                 // console.log(products)

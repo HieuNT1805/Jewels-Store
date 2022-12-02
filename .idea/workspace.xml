@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9d6aab8-49fb-4f3f-89df-c13fd7722f9d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/Web_2022_API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/Web_2022_API.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProductDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/Web_2022_API/.idea/workspace.xml" afterDir="false" />
@@ -20,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Project/Web_2022_API" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,7 +74,7 @@
       <workItem from="1669358305741" duration="350000" />
       <workItem from="1669358695874" duration="2325000" />
       <workItem from="1669878631120" duration="1584000" />
-      <workItem from="1669983721255" duration="660000" />
+      <workItem from="1669983721255" duration="1497000" />
     </task>
     <servers />
   </component>
