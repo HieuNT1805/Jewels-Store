@@ -18,7 +18,7 @@ function Menu() {
     }, [])
   return (
   <>
-    <h1 className="text-center mt-3"> Our Products</h1>
+    <h1 className="text-center-product mt-3"> Our Products</h1>
 		<section className="py-4 container">
 			<div className="row justify-content-center">
 				{products.map((item,index)=> {

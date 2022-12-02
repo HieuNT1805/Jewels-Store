@@ -11,7 +11,7 @@ return (
           <div className="card-body text-center">
               <h5 className="card-title">{props.title}</h5>
               <h6 className="card-text"> $ {props.price}</h6>
-              <button className="btn btn-success" onClick={()=>{addItem(props.item)}} > Add to Cart</button>
+              <button className="btn-add-to-cart btn-success" onClick={()=>{addItem(props.item)}} > Add to Cart</button>
           </div>
       </div>
   </div>
