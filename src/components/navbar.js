@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCart } from 'react-use-cart'
 import { useState, useEffect} from "react";
 import Logo from '../img/jewelleryLogo.png';
 import {Link} from 'react-router-dom';
@@ -9,20 +10,17 @@ import axios from 'axios'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import authHeader from '../service/auth_header';
 
-function Navbar({totalItems}, {onOpen}, props) {
+function Navbar({onOpen}, props) {
     const [openLinks,setOpenLinks] = useState(false) ;
     const toggleNavbar = () => {
         setOpenLinks(!openLinks);
     }
+    const { totalItems } = useCart(); 
     //lay so order
     const [countOrder, setCountOrder] = useState(); //set gia tri mac dinh cua so don hang
     //du lieu thay doi thi no render lai du lieu cua so don hang
     useEffect(()=>{
-      axios.get("https://jewel-store-pj.herokuapp.com/api/orders", {headers:authHeader()})
-      .then((res) => {
-        setCountOrder(res.data.count)
-        console.log(res.data)
-      })
+      setCountOrder(totalItems)
     });
     
   return (
