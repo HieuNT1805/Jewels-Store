@@ -1,18 +1,18 @@
 import React from 'react'
-import {AiFillCloseCircle} from "react-icons/ai"
-import {RiDeleteBin6Line } from "react-icons/ri"
 import { useCart } from 'react-use-cart'
 
 import "../style/Cart.css"
 function Cart() {
-	const {	isEmpty,
-			totalUniqueItems,
-			items,
-			totalItems,
-			cartTotal,
-			updateItemQuantity,
-			removeItem,
-			emptyCart} = useCart();
+	const {	
+    isEmpty,
+		totalUniqueItems,
+		items,
+		totalItems,
+		cartTotal,
+		updateItemQuantity,
+		removeItem,
+		emptyCart 
+    } = useCart();
 	if (isEmpty) return <h5 className="text-center" >Cart is Empty </h5>
   return (
     <>

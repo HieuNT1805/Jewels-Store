@@ -1,19 +1,12 @@
-import Pearl from "../img/jewellery1.jpg"
-import PearlGold from "../img/jewellery2.jpg"
-import Flower from "../img/jewellery3.jpg"
-import ButterFly from "../img/jewellery4.jpg"
-import React , {useState, useEffect} from 'react'
+
+import React from 'react'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
 import { AddShoppingCart } from "@mui/icons-material"
 import "../style/MenuItem.css"
-import getProductList from "../service/product.service"
-import axios from 'axios'
-import {useCart} from 'react-use-cart'
+
 
 const menuItem= ({onAddToCart, product}) => {
     const handleAddToCart = () => onAddToCart(product.id, 1);
-    
-
     return (
         <Card className="card">
             <CardMedia className="card-media" image={product.img} title= {product.name}/>
@@ -30,7 +23,7 @@ const menuItem= ({onAddToCart, product}) => {
                 </IconButton>
             </CardActions>
         </Card>
-    
+
     )
 }
 export default menuItem
