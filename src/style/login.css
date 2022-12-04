@@ -26,10 +26,8 @@
 /* Header LogIn  */
 .tieu-de-login{
     font-family: 'Courier New', Courier, monospace;
-    font-weight: 30;
-    font-size: 50px;
-    margin-left: 20px;
-    
+    font-size: 40px;
+    margin-left: 30%;
     text-align: center;
 }
 /* dong input */
@@ -59,4 +57,7 @@
     color: red;
     margin-left: 15px;
     margin-top: 5px
+}
+.btn-login{
+    background-color: black;
 }

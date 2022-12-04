@@ -36,7 +36,7 @@ function Login() {
     <div className="login" style={{backgroundImage: `url(${HomeBackground})`}}>
             
             <form onSubmit={handleSubmit(onSubmit)} className="form-login-mau-trang"> 
-                    <h1 className="tieu-de-login"><b>Log in</b>  </h1>
+                    <h1 ><b className="tieu-de-login">Log in</b>  </h1>
                     {/* Username */}
                     <label htmlFor="name">User Name</label>
                     <input 
@@ -83,7 +83,7 @@ function Login() {
                       </div>
                       )}
                     {/* button submit */}
-                    <button type="submit-btn" className="btn btn-primary">Log in</button>
+                    <button type="submit-btn" className="btn-login">Log in</button>
                     <p className="forgot-password"> or <Link to="/register"> Not have an account ? Sign up here  </Link> </p>
             </form>
     </div>

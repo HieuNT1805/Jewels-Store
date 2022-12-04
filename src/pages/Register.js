@@ -37,7 +37,7 @@ function Register() {
     <div className="register" style={{backgroundImage: `url(${HomeBackground})`}}>
           
           <form onSubmit={handleSubmit(onSubmit)} className="form-register" >
-              <h1> <b>REGISTER</b> </h1>
+              <h1> <b className="title-register">REGISTER</b> </h1>
                     {/* firstname */}
                     <label htmlFor="name">First Name</label>
                     <input 

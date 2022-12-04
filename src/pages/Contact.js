@@ -6,7 +6,7 @@ function Contact() {
   return (
     <div className="contact">
         <div className="leftside" >
-              <h1> <b>Contact Us</b> </h1>
+              <h1> <b className="title-contact">Contact Us</b> </h1>
 
               <form id="contact-form" method ="POST">
                 <label htmlFor="name">Full Name</label>
@@ -17,7 +17,7 @@ function Contact() {
                 <input name="email"  type="email"></input>
                 <label htmlFor="message">Message</label>
                 <textarea rows="10" placeholder="Your Message..." name="message" required></textarea>
-                <button type="submit"> Send message</button>
+                <button type="submit" className="btn-send-mess"> Send message</button>
 
               </form>
         </div>

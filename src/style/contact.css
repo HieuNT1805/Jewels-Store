@@ -7,7 +7,11 @@
     height: 90vh;
     display: flex;
 }
-  
+.title-contact{
+    font-size: 40px;
+    font-weight: 30px;
+    margin-left: 20%;
+}
 .contact .rightside {
     height: 100%;
     flex: 50%;
@@ -72,14 +76,18 @@ form label {
   
 form button {
     margin-top: 40px;
-    width: 150px;
+    width: 155px;
     height: 40px;
     border: none;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: #121619;
     color: whitesmoke;
     font-size: 15px;
     font-family: 'Courier New', Courier, monospace ;
     cursor: pointer;
     margin-left: 250px;
+}
+.btn-send-mess{
+    font-size: 18px;
+    width: 155px;
 }
