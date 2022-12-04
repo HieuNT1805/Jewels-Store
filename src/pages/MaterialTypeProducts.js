@@ -12,22 +12,11 @@ function MaterialTypeProducts() {
     const material = useLocation().state.material;
 
     const [products, setProducts] = useState([])
-    const GetData = async () => {
-        console.log(material)
-        const {productData} = await axios.get(`http://localhost:3001/v1/products/${material}`)
-            .then(result => {
-                setProducts(result.data.product)
-                // console.log(products)
-            })
-            .catch(error => {
-                console.log(error)
-            }) || {};
-    }
-
-
     useEffect(() => {
-        GetData()
-        console.log(products)
+        axios.get("https://jewelstore.onrender.com/api/products")
+        .then((res)=>{
+            setProducts(res.data.products)
+        })
     }, [])
 
 
@@ -41,26 +30,26 @@ function MaterialTypeProducts() {
                        </h2>
                    </div>
                    <div className="price_container">
-                       {products.map(product => (
+                       {products.filter(products => products.material.includes(material)).map(product => (
                            <div key={product._id} className="box">
                                <div className="name">
                                    <h6>
-                                       {product.ProName}
+                                       {product.name}
                                    </h6>
                                </div>
                                <div className="img-box"  id='Gold' style={{cursor: "pointer"}}>
-                                   <img src={product.Img_link.toString()} alt=""/>
+                                   <img src={product.img} alt=""/>
                                </div>
                                <div className="detail-box">
                                    <h5>
-                                       $<span>{product.Price}</span>
+                                       $<span>{product.price}</span>
                                    </h5>
                                    {/* <a href="">
                                        Buy Now
                                    </a> */}
                                     <Link to={{
-                                        pathname: `/productDetail/${product._id}`,
-                                        state: {ProductID: `${product._id}`}
+                                        pathname: `/productDetail/${product.id}`,
+                                        state: {ProductID: `${product.id}`}
                                     }}>
                                         View Detail
                                     </Link>

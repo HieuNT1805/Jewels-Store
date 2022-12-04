@@ -12,7 +12,8 @@ import Cart from "./pages/Cart";
 // import CartButtons from "./components/CartButtons";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {Route, Switch} from "react-router-dom";
-import axios from "axios";
+import MaterialTypeProducts from "./pages/MaterialTypeProducts";
+import ProductDetail from './pages/ProductDetail';
 import {CartProvider} from 'react-use-cart'
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
             <Route exact path= "/register"  component={Register} />
             <Route exact path= "/login" component={Login}/>
             <Route exact path= "/cart" component = {Cart} />
+            <Route path = "/product/:page" component={MaterialTypeProducts}/>
+            <Route path = "/productDetail/:ProductID" component={ProductDetail}/>
         </Switch>
         <Footer/>
         </CartProvider>
