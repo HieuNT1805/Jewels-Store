@@ -122,9 +122,9 @@ function Menu() {
                         </div>
                     </div>
                     <div className="d-flex justify-content-center">
-                        <a href="" className="price_btn">
-                            See More
-                        </a>
+                        {/*<a href="" className="price_btn">*/}
+                        {/*    See More*/}
+                        {/*</a>*/}
                     </div>
                 </div>
             </section>

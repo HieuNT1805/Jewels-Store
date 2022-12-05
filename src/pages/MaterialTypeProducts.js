@@ -4,8 +4,9 @@ import {Link, useParams, useLocation} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import axios from "axios";
 import '../style/MenuStyle/css/style.css';
-import '../style/MenuStyle/css/bootstrap.css'
-import '../style/MenuStyle/css/responsive.css'
+import '../style/MenuStyle/css/bootstrap.css';
+import '../style/MenuStyle/css/responsive.css';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 function MaterialTypeProducts() {
     const {page} = useParams()
@@ -53,14 +54,18 @@ function MaterialTypeProducts() {
                                     }}>
                                         View Detail
                                     </Link>
+                                   <AddShoppingCartIcon style={{marginLeft:"50px"}}>
+
+                                   </AddShoppingCartIcon>
+
                                </div>
                            </div>
                        ))}
                    </div>
                    <div className="d-flex justify-content-center">
-                       <a href="" className="price_btn">
-                           See More
-                       </a>
+                       {/*<a href="" className="price_btn">*/}
+                       {/*    See More*/}
+                       {/*</a>*/}
                    </div>
                </div>
            </section>
