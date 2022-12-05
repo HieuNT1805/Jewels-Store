@@ -1,19 +1,27 @@
 import React from 'react'
-import {AiFillCloseCircle} from "react-icons/ai"
-import {RiDeleteBin6Line } from "react-icons/ri"
 import { useCart } from 'react-use-cart'
+import { Link, useHistory,useNavigate  } from "react-router-dom";
 
 import "../style/Cart.css"
 function Cart() {
-	const {	isEmpty,
-			totalUniqueItems,
-			items,
-			totalItems,
-			cartTotal,
-			updateItemQuantity,
-			removeItem,
-			emptyCart} = useCart();
-	if (isEmpty) return <h5 className="text-center" >Cart is Empty </h5>
+
+  let history = useHistory();
+
+	const {	
+    isEmpty,
+		totalUniqueItems,
+		items,
+		totalItems,
+		cartTotal,
+		updateItemQuantity,
+		removeItem,
+		emptyCart 
+    } = useCart();
+
+    const tocheckout =() => 
+    { history.push("/checkout")}
+    
+    if (isEmpty) return <h5 className="text-center" >Cart is Empty </h5>
   return (
     <>
     <section className="py-4 container">
@@ -44,7 +52,7 @@ function Cart() {
                       <td>
                         <img src={item.img} style={{height: "10rem"}} alt=""></img>
                       </td>
-                      <td className="content" >{item.title}</td>
+                      <td className="content" >{item.name}</td>
                       <td className="content">{item.price}</td>
                       <td className="content">{item.quantity}</td>
                       <td className="">
@@ -74,7 +82,7 @@ function Cart() {
         </div>
         <div className="col-auto ms-auto">
           <button className="clear-btn btn btn-warning m-2" onClick={() => emptyCart()}>Clear Cart</button>
-          <button className="checkout-btn btn btn-primary m-2">Check Out</button>
+          <button className="checkout-btn btn btn-primary m-2" onClick={() => tocheckout()}>Check Out</button>
         </div>
       </div>
     </section>

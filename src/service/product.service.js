@@ -1,18 +1,8 @@
-<<<<<<< Updated upstream
-import axios from 'axios'
 
-const url = 'https://jewel-store-pj.herokuapp.com/' //api product
-
-//function get product from api, return nhieu function
-const getProductList = () => {return axios.get(url + 'api/products')}
-
-
-export default getProductList
-=======
 import axios from 'axios'
 import authHeader from './auth_header';
 
-const url = 'http://localhost:3000/' //api product
+const url = 'https://jewelstore.onrender.com/' //api product
 
 
 //function get product from api, return nhieu function
@@ -36,4 +26,4 @@ const deleteProduct = (productId) => {return axios.delete(url + `api/manage/prod
 const productservice={getAllProducts, postNewProduct, updateProduct, getProduct,deleteProduct}
 
 export default productservice;
->>>>>>> Stashed changes
+

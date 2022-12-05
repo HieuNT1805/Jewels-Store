@@ -1,15 +1,12 @@
 import React, {useEffect,useState} from 'react'
-import HomeBackground from "../img/background1.avif";
 import "../style/checkout.css";
 import {Link, useHistory} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import authService from '../service/user.service';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import getOders from '../service/order.service'
-import swal from 'sweetalert';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useCart } from 'react-use-cart';
 
 
 function Checkout() {
@@ -19,9 +16,9 @@ function Checkout() {
   const [error, setError] = useState([]);
 
   ////
-  const [data, setData] = useState({orders:[]}); 
+  const [data, setData] = useState({user:{}}); 
   useEffect(() => {
-    getOders()
+    authService.getUser()
     .then((res) =>{
       setData(res.data)
     })
@@ -50,81 +47,14 @@ function Checkout() {
         }
       )
    console.log(data)};
-   var totalCartPrice = 0;
-
 
    
-    // Paypal Code
-    const createOrder = (data, actions) =>{
-        return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                value: totalCartPrice,
-              },
-            },
-          ],
-        });
-    };
-    const [checkoutInput, setCheckoutInput] = useState({
-      firstname: '',
-      lastname: '',
-      phone: '',
-      email: '',
-      address: '',
-      city: '',
-      state: '',
-      zipcode: '',
-  });
-    var orderinfo_data = {
-      firstname: checkoutInput.firstname,
-      lastname: checkoutInput.lastname,
-      phone: checkoutInput.phone,
-      email: checkoutInput.email,
-      address: checkoutInput.address,
-      city: checkoutInput.city,
-      state: checkoutInput.state,
-      zipcode: checkoutInput.zipcode,
-      payment_mode: 'Paid by PayPal',
-      payment_id: '',
-  }
+   var totalCartPrice = 0;
 
-    const onApprove = (data, actions) => {
-        // return actions.order.capture();
-        return actions.order.capture().then(function(details) {
-            console.log(details);
-            orderinfo_data.payment_id = details.id;
+   const { items, cartTotal} = useCart(); 
 
-            axios.post(`/api/place-order`, orderinfo_data).then(res=>{
-                if(res.data.status === 200)
-                {
-                    swal("Order Placed Successfully",res.data.message,"success");
-                    setError([]);
-                    history.push('/thank-you');
-                }
-                else if(res.data.status === 422)
-                {
-                    swal("All fields are mandetory","","error");
-                    setError(res.data.errors);
-                }
-            });
-        });
-    };
-    // End-Paypal Code
-
-    axios.post(`/api/validate-order`, data).then(res=>{
-      if(res.data.status === 200)
-      {
-          setError([]);
-          var myModal = new window.bootstrap.Modal(document.getElementById('payOnlineModal'));
-          myModal.show();
-      }
-      else if(res.data.status === 422)
-      {
-          swal("All fields are mandetory","","error");
-          setError(res.data.errors);
-      }
-  });
+   
+  
 
 
   return (
@@ -132,246 +62,91 @@ function Checkout() {
     
     <div class="container">
       <main>
-      
-    
-        <div class="row g-5">
-          <div class="col-md-5 col-lg-4 order-md-last">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="text-primary">Your cart</span>
-             <span class="badge bg-primary rounded-pill">{data.count}</span>
-                       
-            </h4>
-            <div className="col-md-5">
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th width="50%">Product</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {data.orders && data.orders.map((order) =>  {
-                    totalCartPrice += order.quantity* order.product.price;
-                            return (
-                                <tr key={order._id}>
-                                 <td>{order.product.name}</td>
-                                 <td>{order.product.price}</td>
-                                  <td>{order.quantity}</td>
-                                  <td>{order.quantity* order.product.price}</td>
-                                </tr>
-                            )
-                        })}
-                        <tr>
-                          <td colSpan="2" className="text-end fw-bold">Grand Total</td>
-                          <td colSpan="2" className="text-end fw-bold">{totalCartPrice}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-    
-            <form class="card">
-          <div class="input-group">
-            <input type="text"  placeholder="Voucher"/>
-            <button type="submit" class="--btn --btn-secondary">Add</button>
-          </div>
-        </form>
-          </div>
-          <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">Billing address</h4>
+          <div class="col-md-7 col-lg-12">
+            <h4 class="mb-5">Billing address</h4>
             <form onSubmit={handleSubmit(onSubmit)} className="needs-validation" novalidate>
 
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <label for="firstName" class="form-label">First name</label>
-                  <input type="text" class="form-control" id="firstName" 
-                   {...register("firstname", {
-                    minLength: {
-                        value: 2,
-                        message: "firstname must be between 2 character and 10 character"
-                    },
-                    maxLength: {
-                        value: 10,
-                        message: "firstname must be between 2 character and 10 character "
-                    },
-                    required: "firstname is required"
-
-                  } )}>
-
-                  </input>
-                  {errors.firstname && (<small className="notion-text"> {errors.firstname.message}</small>)}
-            
+                <div className='' class="col-lg-20">
+                <div class="card">
+                  {data &&
+                    <address>
+                  {data.user.email}
+                  </address>}
                 </div>
-    
-                <div class="col-sm-6">
-                  <label for="lastName" class="form-label">Last name</label>
-                  <input type="text" class="form-control" id="lastName" 
-                   {...register("lastname", {
-                    minLength: {
-                        value: 2,
-                        message: "Last name must be between 2 character and 10 character"
-                    },
-                    maxLength: {
-                        value: 10,
-                        message: "Last name must be between 2 character and 10 character "
-                    },
-                    required: "Last name is required"
-
-                  } )}/>
-                  {errors.lastname && (<small className="notion-text"> {errors.lastname.message}</small>)}
-
-    
                 </div>
-    
-                <div class="col-12">
-                  <label for="username" class="form-label">Phone</label>
-                    <input type="text" class="form-control" id="username" 
-                     {...register("phone", {
-                       pattern:{
-                        value: /^\d{1}-?\d{5}-?\d{4}$/,
-                        message: "Phone need to have 10 digits"
-                       }
-                       ,
-                        required: "phone is required"
-    
-                      } )}/>
-                      {errors.phone && (<small className="notion-text"> {errors.phone.message}</small>)}
-    
-                </div>
-    
-                <div class="col-12">
-                  <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-                  <input type="email" class="form-control" id="email" 
-                   {...register("email", {
-                    required: "Email is required",
-                    pattern:{
-                      value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: "This is not valid email"
-                    }
-                  })}>
+
+                <h4/>
+                <h4/>
+
+          <table className="table table-light- table-hover m-0">
+            <tbody>
+              <tr>
+                <td className="product-col" style={{padding: "5px 70px 7px 10px"}}>
+                  <b>Product</b>
+                  </td>
+                <td className="name-col" style={{padding: "5px 100px 7px 10px"}}>
+                  <b>Name</b>
+                </td>
+                <td className="price-col" style={{ padding: "5px 50px 7px 10px" }}>
+                  <b>Price</b>
+                </td>
+                <td className="quantity-col" style={{padding: "5px 50px 7px 10px"}}>
+                  <b>Quantity</b>
+                </td>
+                <td className="price-col" style={{padding: "5px 50px 7px 10px"}}>
+                  <b>Price</b>
+                </td>
+              </tr>
+              {items.map((item,index) =>{
+                return (
+                  <tr key={index}>
+                      <td>
+                        <img src={item.img} style={{height: "10rem"}} alt=""></img>
+                      </td>
+                      <td className="content" >{item.name}</td>
+                      <td className="content">{item.price}</td>
+                      <td className="content">{item.quantity}</td>  
+                      <td className="content">{item.quantity*item.price}</td>                    
                   
-                  </input>
-                  {errors.email && (<small className="notion-text"> {errors.email.message}</small>)}
-              
+                  </tr>
+                )
+            })}
+            </tbody>
+          </table>
+            <h4/>
+            <h4/>
+
+          <div class="card">
+          <div class="row">
+            <div class="col-xl-9 fs-5">Phương thức thanh toán</div>
+            <div class="col-sm fs-5">Thanh toán khi nhận hàng</div> 
+              <div class="card">
+               <div class="row">
+               <div class="col-xl-8"></div>
+              <div class="col-sm fs-5">tong tien hang</div>
+              <div class="col-sm fs-5">₫{cartTotal*100.000}</div>
+
+              </div>
+              <div class="row ">
+              <div class="col-xl-8"></div>
+              <div class="col fs-5" >phi van chyyen</div>
+              <div class="col-sm fs-5">₫21.600</div>
+
                 </div>
-    
-                <div class="col-12">
-                  <label for="address" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="address" placeholder="1234 Main St" required/>
-                  <div class="invalid-feedback ">
-                    Please enter your shipping address.
-                  </div>
-                </div>
-    
-                <div class="col-12">
-                  <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                  <input type="text" class="form-control" id="address2" placeholder="Apartment or suite"/>
-                </div>
-    
-                <div class="col-md-5">
-                  <label for="country" class="form-label">Country</label>
-                  <select class="form-select" id="country" required>
-                    <option value="">Choose...</option>
-                    <option>United States</option>
-                  </select>
-                  <div class="invalid-feedback ">
-                    Please select a valid country.
-                  </div>
-                </div>
-    
-                <div class="col-md-4">
-                  <label for="state" class="form-label">State</label>
-                  <select class="form-select" id="state" required>
-                    <option value="">Choose...</option>
-                    <option>California</option>
-                  </select>
-                  <div class="invalid-feedback ">
-                    Please provide a valid state.
-                  </div>
-                </div>
-    
-                <div class="col-md-3">
-                  <label for="zip" class="form-label">Zip</label>
-                  <input type="text" class="form-control" id="zip" placeholder="" required/>
-                  <div class="invalid-feedback ">
-                    Zip code required.
-                  </div>
+                <div className='row'>
+                <div class="col-xl-8"></div>
+                <div class="col-sm fs-5">tong thanh toan:</div>
+                <div class="col-sm fs-5">₫165.600</div>
+
                 </div>
               </div>
-    
-              <hr class="my-4"/>
-    
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="same-address"/>
-                <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-              </div>
-    
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="save-info"/>
-                <label class="form-check-label" for="save-info">Save this information for next time</label>
-              </div>
-    
-              <hr class="my-4"/>
-    
-              <h4 class="mb-3">Payment</h4>
-    
-              <div class="my-3">
-                <div class="form-check">
-                  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required/>
-                  <label class="form-check-label" for="credit">Credit card</label>
-                </div>
-                <div class="form-check">
-                  <input id="debit" name="paymentMethod" type="radio" class="form-check-input" checked required/>
-                  <label class="form-check-label" for="debit">Debit card</label>
-                </div>
-                <div class="form-check">
-                  <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"checked required/>
-                  <label class="form-check-label" for="paypal">PayPal</label>
-                </div>
-              </div>
-    
-              <div class="row gy-3">
-                <div class="col-md-6">
-                  <label for="cc-name" class="form-label">Name on card</label>
-                  <input type="text" class="form-control" id="cc-name" placeholder="" required/>
-                  <small class="text-muted">Full name as displayed on card</small>
-                  <div class="invalid-feedback ">
-                    Name on card is required
-                  </div>
-                </div>
-    
-                <div class="col-md-6">
-                  <label for="cc-number" class="form-label">Credit card number</label>
-                  <input type="text" class="form-control" id="cc-number" placeholder="" required/>
-                  <div class="invalid-feedback ">
-                    Credit card number is required
-                  </div>
-                </div>
-    
-                <div class="col-md-3">
-                  <label for="cc-expiration" class="form-label">Expiration</label>
-                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required/>
-                  <div class="invalid-feedback ">
-                    Expiration date required
-                  </div>
-                </div>
-    
-                <div class="col-md-3">
-                  <label for="cc-cvv" class="form-label">CVV</label>
-                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required/>
-                  <div class="invalid-feedback ">
-                    Security code required
-                  </div>
-                </div>
-              </div>
-    
-              <hr class="my-4"/>
-    
+          </div>
+          </div>
+
+
               <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
             </form>
           </div>
-        </div>
       </main>
     
     </div>
