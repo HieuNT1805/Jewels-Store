@@ -1,15 +1,4 @@
 .card {
-<<<<<<< Updated upstream
-margin-left: 0px;
-padding: 10px;
-display: flex;
-}
-
-
- .bg-light{
-   margin-top: 10px;
-}
-=======
     margin-left: 0px;
     padding: 10px;
     display: flex;
@@ -19,4 +8,3 @@ display: flex;
      .bg-light{
        margin-top: 10px;
     }
->>>>>>> Stashed changes
