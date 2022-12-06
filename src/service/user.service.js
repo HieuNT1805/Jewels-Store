@@ -1,7 +1,7 @@
 import Axios from "axios";
 import authHeader from "./auth_header";
 
-const api="https://jewelstore.onrender.com/api/"
+const api="http://localhost:3000/api/"
 
 const register=(firstname, lastname, email, username, password ) => {
     return Axios.post(api+"auth/signup", {
@@ -27,6 +27,10 @@ const getUser=() => {
 const logout=() => {
     localStorage.removeItem("user")
 }
-const authService={register, login, logout,getUser}
+const updateInformation = (firstname, lastname, contact, address) => {return Axios.patch(api+"user",{
+    firstname, lastname, contact, address
+},{headers:authHeader()})}
+
+const authService={register, login, logout,getUser,updateInformation}
 
 export default authService;
