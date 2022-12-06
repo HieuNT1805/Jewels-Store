@@ -37,6 +37,7 @@ function Navbar() {
                 </div>
         </div>
         <div className="rightside">
+                       <Link to="/manageProduct">Admin</Link>
                         <Link to="/">Home</Link>
                         <Link to="/menu">Product</Link>
                         {/* <Link to="/product">Menu</Link> */}
