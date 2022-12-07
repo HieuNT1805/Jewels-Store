@@ -1,7 +1,7 @@
 import Axios from "axios";
 import authHeader from "./auth_header";
 
-const api="http://localhost:3000/api/"
+const api="https://jewelstore.onrender.com/api/"
 
 const register=(firstname, lastname, email, username, password ) => {
     return Axios.post(api+"auth/signup", {

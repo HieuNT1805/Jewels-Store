@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import orderService from "../service/order.service";
 
 const style = {
   position: "absolute",
@@ -60,8 +61,8 @@ function Checkout() {
       (error) => {
         const resMessage =
           (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+            error.response.dataupdate &&
+            error.response.dataupdate.message) ||
           error.message ||
           error.toString();
         setMessage(resMessage);
@@ -70,33 +71,33 @@ function Checkout() {
     console.log(dataupdate);
   };
   //
-  const onSubmit = (data) => {
-    const firstname = data.firstname;
-    const lastname = data.lastname;
-    const email = data.email;
-    const username = data.username;
-    const password = data.password;
-    authService.register(firstname, lastname, email, username, password).then(
+  const onSubmit = (items) => {
+    
+    const productId = items[0].id;
+    const quantity = items[0].quantity;
+
+    orderService.postOrder(productId, quantity).then(
       () => {
         // window.open("/login")
-        window.alert("Register Successed!");
-        history.push("/login");
+        window.alert(" Successed!");
+        history.push("/");
+        emptyCart();
       },
       (error) => {
         const resMessage =
           (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+            error.response.items &&
+            error.response.items.message) ||
           error.message ||
           error.toString();
         setMessage(resMessage);
       }
     );
-    console.log(data);
+    console.log(items[0]);
   };
   //
 
-  const { items, cartTotal } = useCart();
+  const { items, emptyCart,cartTotal } = useCart();
 
   return (
     <body class="bg-light">
@@ -211,11 +212,7 @@ function Checkout() {
                 </Modal>
               </div>
             </div>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="needs-validation"
-              novalidate
-            >
+
               <table className="table table-light- m-1 table-sm">
                 <tbody>
                   <tr>
@@ -297,10 +294,14 @@ function Checkout() {
                   </div>
                 </div>
               </div>
-              <button class="w-100 btn btn-primary btn-lg" type="submit">
+
+                <button class="btn btn-primary w-50" type="submit"
+                onClick={()=> onSubmit(items)}
+                >
                 Continue to checkout
               </button>
-            </form>
+              
+             <h4/>
           </div>
         </main>
       </div>
