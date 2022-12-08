@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/about.css";
-import {Link, useParams, useLocation} from 'react-router-dom'
+import {Link, useParams, useLocation, useHistory} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import axios from "axios";
 import '../style/MenuStyle/css/style.css';
@@ -9,21 +9,40 @@ import '../style/MenuStyle/css/responsive.css'
 import { useCart } from "react-use-cart";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { IconButton } from '@mui/material';
+import AuthService from "../service/user.service";
 
 
 function MaterialTypeProducts() {
     const {page} = useParams()
     const material = useLocation().state.material;
 
+    const [currentUser, setCurrentUser] = useState(undefined);
     const [products, setProducts] = useState([])
     useEffect(() => {
         axios.get("https://jewelstore.onrender.com/api/products")
         .then((res)=>{
             setProducts(res.data.products)
         })
+        const user = AuthService.getCurrentUser()
+      // const role = AuthService.getCurrentUser().roles
+      
+      if (user){
+        console.log("b",AuthService.getCurrentUser())
+        setCurrentUser(user)
+      }
     }, [])
-
+    const history=useHistory()
     const {addItem} = useCart();
+    const add=(item)=>{
+        if(currentUser){
+            addItem(item)
+        }else{  
+           
+            history.push("/login")
+            window.location.reload();
+        }
+        
+    }
     return (
        <>
            <section className="price_section layout_padding">
@@ -64,7 +83,7 @@ function MaterialTypeProducts() {
                                         View Detail
                                     </Link>
                                     
-                                    <IconButton style={{marginLeft:"50px"}} color="inherit" onClick={()=>{addItem(product)}} aria-label="add to shopping cart">
+                                    <IconButton style={{marginLeft:"50px"}} color="inherit" onClick={()=>{add(product)}} aria-label="add to shopping cart">
                                     <AddShoppingCartIcon/></IconButton>                               
                                     </div>
                            </div>

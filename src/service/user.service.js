@@ -23,6 +23,9 @@ const login=(username, password) => {
 const getUser=() => {
     return Axios.get(api+"user",{headers:authHeader()})
 }
+const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem("user"));
+  };
 
 const logout=() => {
     localStorage.removeItem("user")
@@ -31,6 +34,6 @@ const updateInformation = (firstname, lastname, contact, address) => {return Axi
     firstname, lastname, contact, address
 },{headers:authHeader()})}
 
-const authService={register, login, logout,getUser,updateInformation}
+const authService={register, login, logout,getUser,getCurrentUser,updateInformation}
 
 export default authService;
