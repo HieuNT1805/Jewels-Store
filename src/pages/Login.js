@@ -17,7 +17,6 @@ function Login() {
       () => {
 
         // window.open("/menu")
-        window.alert("Login Successed!");
         history.push("/menu")
         window.location.reload();
       }, (error) => {

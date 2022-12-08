@@ -83,7 +83,7 @@ function Menu() {
                                     pathname: "/product/GoldProduct",
                                     state: {material: 'Gold'}
                                 }}>
-                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Gold%20Jewelry/gvxmxmy062505-vong-tay-vang-18k-dinh-da-cz-pnj-1_tcuqtq.png" alt=""/>
+                                    <img className="w-125 h-100" src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Gold%20Jewelry/gvxmxmy062505-vong-tay-vang-18k-dinh-da-cz-pnj-1_tcuqtq.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>
@@ -99,7 +99,7 @@ function Menu() {
                                     pathname: "/product/DiamondProduct",
                                     state: {material: 'Diamond'}
                                 }}>
-                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Diamond%20Jewelry/gnddddw007498-nhan-kim-cuong-vang-trang-14k-disneypnj-sleeping-beauty-01_x5n29j.png" alt=""/>
+                                    <img className="w-125 h-100" src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394174/Jewels%20store_%20Product/Diamond%20Jewelry/gnddddw007498-nhan-kim-cuong-vang-trang-14k-disneypnj-sleeping-beauty-01_x5n29j.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>
@@ -115,7 +115,7 @@ function Menu() {
                                     pathname: '/product/SilverProduct',
                                     state: {material: "Silver"}
                                 }}>
-                                    <img src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394363/Jewels%20store_%20Product/Silver%20Jewelry/gmxmxmw000791-mat-day-chuyen-vang-trang-y-18k-dinh-da-cz-pnj-1_fcawus.png" alt=""/>
+                                    <img  className="w-125 h-100" src="https://res.cloudinary.com/dgnwtkolg/image/upload/v1669394363/Jewels%20store_%20Product/Silver%20Jewelry/gmxmxmw000791-mat-day-chuyen-vang-trang-y-18k-dinh-da-cz-pnj-1_fcawus.png" alt=""/>
                                 </Link>
                             </div>
                             <div className="detail-box"></div>

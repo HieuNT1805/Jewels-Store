@@ -14,13 +14,14 @@ import PostNewProduct from './pages/addnew';
 import EditProduct from './pages/edit';
 import Checkout from './pages/checkout';
 
+
 // import CartButtons from "./components/CartButtons";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {Route, Switch} from "react-router-dom";
 import MaterialTypeProducts from "./pages/MaterialTypeProducts";
 import ProductDetail from './pages/ProductDetail';
 import {CartProvider} from 'react-use-cart'
-
+import AccountMenu from './components/test'
 function App() {
   return (
      <>
@@ -40,6 +41,7 @@ function App() {
             <Route exact path= "/manageProduct" component = {Manager} />
             <Route exact path= "/addnew" component = {PostNewProduct} />
             <Route exact path= "/edit/:productId" component = {EditProduct} />
+            <Route exact path= "/test" component = {AccountMenu} />
 
         </Switch>
         <Footer/>

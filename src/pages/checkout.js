@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import orderService from "../service/order.service";
+import _ from "lodash";
 
 const style = {
   position: "absolute",
@@ -31,14 +32,14 @@ function Checkout() {
   const {
     register,
     handleSubmit,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
   const [error, setError] = useState([]);
 
   ////
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   ///
   const [data, setData] = useState({ user: {} });
   useEffect(() => {
@@ -100,7 +101,24 @@ function Checkout() {
     emptyCart();
   };
   //
-
+  const [data1, setData1] = useState({ user: {} });
+  const handleOpen = (user) => {
+    setOpen(true);
+    setData1(user);
+    if (data1 && !_.isEmpty(data1)) {
+      setValue = () => [
+        { firstname: data1.firstname },
+        { lastname: data1.lastname },
+        { contact: data1.contact },
+        { address: data1.address },
+      ];
+    }
+  };
+  const handleClose = () => {
+    setOpen(false);
+    reset();
+  };
+  //
   const { items, emptyCart, cartTotal } = useCart();
 
   return (
@@ -127,7 +145,7 @@ function Checkout() {
                 </div>
                 <div className="col-sm-4 fs-5">{data.user.address}</div>
                 <div class=" col-sm-4 fs-5"> Default</div>
-                <Button className="col-sm" onClick={handleOpen}>
+                <Button className="col-sm" onClick={()=>handleOpen(data.user)}>
                   Update
                 </Button>
                 <Modal
@@ -143,6 +161,7 @@ function Checkout() {
                     {/* name */}
                     <label htmlFor="name"> lastname</label>
                     <input
+                    defaultValue={data1.lastname}
                       name="lastname"
                       type="text"
                       {...register("lastname", {
@@ -158,6 +177,7 @@ function Checkout() {
                     {/** */}
                     <label htmlFor="name"> firstname</label>
                     <input
+                      defaultValue={data1.firstname}
                       name="firstname"
                       type="text"
                       {...register("firstname", {
@@ -173,6 +193,7 @@ function Checkout() {
                     {/*Contact*/}
                     <label htmlFor="name"> contact</label>
                     <input
+                    defaultValue={data1.contact}
                       name="contact"
                       type="text"
                       {...register("contact", {
@@ -188,6 +209,7 @@ function Checkout() {
                     {/*Address*/}
                     <label htmlFor="name"> address</label>
                     <input
+                    defaultValue={data1.address}
                       name="address"
                       type="text"
                       {...register("address", {

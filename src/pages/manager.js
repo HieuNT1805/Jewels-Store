@@ -67,7 +67,6 @@ function Manager() {
       ];
     }
   };
-  console.log(data1);
   const handleClose = () => {
     setOpen(false);
     reset();
@@ -164,7 +163,7 @@ function Manager() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <form onSubmit={handleSubmit(onAddnew)} className="form-register">
+            <form onSubmit={handleSubmit(onAddnew)} className="form-register p-1">
               <h1>
                 {" "}
                 <b>ADD NEW</b>{" "}
@@ -225,6 +224,9 @@ function Manager() {
                   required: "image is required",
                 })}
               ></input>
+               {errors.img && (
+                <small className="notion-text"> {errors.img.message}</small>
+              )}
 
               {message && (
                 <div>
@@ -248,7 +250,7 @@ function Manager() {
         </div>
         <table id="customers">
           <tr>
-            <th class="h-10 w-10"></th>
+            <th class="h-10 w-10">Product</th>
             <th>Name</th>
             <th>Price</th>
             <th>material</th>

@@ -66,7 +66,7 @@ function MaterialTypeProducts() {
                                     pathname: `/productDetail/${product.id}`,
                                     state: {ProductID: `${product.id}`}
                                 }}>
-                                    <img src={product.img} alt=""/>
+                                    <img className="w-125 h-100" src={product.img} alt=""/>
                                 </Link>
                                </div>
                                <div className="detail-box">

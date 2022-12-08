@@ -15,7 +15,7 @@ import Anh from "../img/lia.jpg"
 
 function App() {
   return (
-    <><div class="viewjarallax " style={{height: "120vh"}} >
+    <><div class="viewjarallax " style={{height: "70vh"}} >
       </div>
         
         <div class="container text-center">
