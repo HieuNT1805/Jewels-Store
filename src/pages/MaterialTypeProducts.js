@@ -6,6 +6,10 @@ import axios from "axios";
 import '../style/MenuStyle/css/style.css';
 import '../style/MenuStyle/css/bootstrap.css'
 import '../style/MenuStyle/css/responsive.css'
+import { useCart } from "react-use-cart";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { IconButton } from '@mui/material';
+
 
 function MaterialTypeProducts() {
     const {page} = useParams()
@@ -19,7 +23,7 @@ function MaterialTypeProducts() {
         })
     }, [])
 
-
+    const {addItem} = useCart();
     return (
        <>
            <section className="price_section layout_padding">
@@ -38,7 +42,13 @@ function MaterialTypeProducts() {
                                    </h6>
                                </div>
                                <div className="img-box"  id='Gold' style={{cursor: "pointer"}}>
-                                   <img src={product.img} alt=""/>
+                                   
+                                   <Link to={{
+                                    pathname: `/productDetail/${product.id}`,
+                                    state: {ProductID: `${product.id}`}
+                                }}>
+                                    <img src={product.img} alt=""/>
+                                </Link>
                                </div>
                                <div className="detail-box">
                                    <h5>
@@ -53,7 +63,10 @@ function MaterialTypeProducts() {
                                     }}>
                                         View Detail
                                     </Link>
-                               </div>
+                                    
+                                    <IconButton style={{marginLeft:"50px"}} color="inherit" onClick={()=>{addItem(product)}} aria-label="add to shopping cart">
+                                    <AddShoppingCartIcon/></IconButton>                               
+                                    </div>
                            </div>
                        ))}
                    </div>

@@ -9,6 +9,11 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
+import Manager from "./pages/manager";
+import PostNewProduct from './pages/addnew';
+import EditProduct from './pages/edit';
+import Checkout from './pages/checkout';
+
 // import CartButtons from "./components/CartButtons";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {Route, Switch} from "react-router-dom";
@@ -31,6 +36,11 @@ function App() {
             <Route exact path= "/cart" component = {Cart} />
             <Route path = "/product/:page" component={MaterialTypeProducts}/>
             <Route path = "/productDetail/:ProductID" component={ProductDetail}/>
+            <Route exact path= "/checkout" component = {Checkout} />
+            <Route exact path= "/manageProduct" component = {Manager} />
+            <Route exact path= "/addnew" component = {PostNewProduct} />
+            <Route exact path= "/edit/:productId" component = {EditProduct} />
+
         </Switch>
         <Footer/>
         </CartProvider>

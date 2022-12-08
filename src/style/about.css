@@ -1,66 +1,9 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
-.about {
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-.abouttop {
-    width: 100%;
-    height: 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-.aboutbottom {
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    align-items: center;
-    margin-top: 25px;
-}
-.aboutbottom p {
-    width: 120px;
-}
-.about .aboutbottom h1 {
-    font-weight: 600;
-    font-size: 40px;
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    transform: translateY(-40px);
-    margin-top: 20px;
-}
-.img-founder{
-    display: flex;
-}
-.founder1{
-    display: flex;
-    margin-left: 40px;
-    margin-right: 200px;
-}
-.story-of-founder1{
-    margin-left: 50px;
-}
-/* .img-founder .founder1 {
-    margin-left: 50px;
-    margin-right: 500px;
-} */
-.founder2{
-    display: flex;
-    margin-right: 20px;
-}
-/* .img-founder .founder2 { 
-    margin-left: 50px;
-    margin-right: 90px;
-} */
-.story-of-founder2{
-    margin-left: 50px;
+
+.viewjarallax
+{
+    background-image: url("../img/lia.jpg");
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
