@@ -32,18 +32,17 @@ function Navbar() {
                         <Link to="/menu">Product</Link>
                         <Link to="/about">About</Link>
                         <Link to="/contact">Contact</Link>
-                        <Link to="/register">Log in</Link>
-                        <Link to="/login" >Log in</Link>
+                        <Link to="/register" >Log in</Link>
                 </div>
         </div>
-        <div className="rightside">
+        <div className="rightside d-flex">
                        <Link to="/manageProduct">Admin</Link>
                         <Link to="/">Home</Link>
                         <Link to="/menu">Product</Link>
                         {/* <Link to="/product">Menu</Link> */}
                         <Link to="/about">About</Link>
                         <Link to="/contact">Contact</Link>
-                        <Link to="/register">Log in</Link>
+                        <Link to="/login">Log in</Link>
                         <button onClick={toggleNavbar}>
                             <TocIcon/>
                         </button>

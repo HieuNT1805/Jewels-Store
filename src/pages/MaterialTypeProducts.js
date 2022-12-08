@@ -22,7 +22,6 @@ function MaterialTypeProducts() {
             setProducts(res.data.products)
         })
     }, [])
-
     const {addItem} = useCart();
     return (
        <>

@@ -6,7 +6,6 @@
     flex-direction: row;
 }
 .navbar .leftside {
-    flex: 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -14,9 +13,10 @@
 }
 .navbar .leftside img {
     width: 250px;
+    height: 150px;
+    margin-left: -100px;
 }
 .navbar .rightside {
-    flex: 50%;
     height: 100%;
     display: flex;
     align-items: center;

@@ -72,42 +72,46 @@ function Checkout() {
   };
   //
   const onSubmit = (items) => {
-    
-    const productId = items[0].id;
-    const quantity = items[0].quantity;
+    {
+      items &&
+        items.map((item) => {
+          const productId = item.id;
+          const quantity = item.quantity;
 
-    orderService.postOrder(productId, quantity).then(
-      () => {
-        // window.open("/login")
-        window.alert(" Successed!");
-        history.push("/");
-        emptyCart();
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.items &&
-            error.response.items.message) ||
-          error.message ||
-          error.toString();
-        setMessage(resMessage);
-      }
-    );
-    console.log(items[0]);
+          orderService.postOrder(productId, quantity).then(
+            () => {
+              // window.open("/login")
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.items &&
+                  error.response.items.message) ||
+                error.message ||
+                error.toString();
+              setMessage(resMessage);
+            }
+          );
+          console.log(item);
+        });
+    }
+    window.alert("Thank you");
+    history.push("/");
+    emptyCart();
   };
   //
 
-  const { items, emptyCart,cartTotal } = useCart();
+  const { items, emptyCart, cartTotal } = useCart();
 
   return (
     <body class="bg-light">
       <div class="container">
         <main>
           <div className="row">
-            <div className="col-sm fs-3 d-flex p-2">Jewellery
-            
-            <pre> | </pre>
-            Payment
+            <div className="col-sm fs-3 d-flex p-2">
+              Jewellery
+              <pre> | </pre>
+              Payment
             </div>
           </div>
           <div className="" class="col-lg-20">
@@ -213,95 +217,102 @@ function Checkout() {
               </div>
             </div>
 
-              <table className="table table-light- m-1 table-sm">
-                <tbody>
-                  <tr>
-                    <td
-                      className="product-col"
-                      style={{ padding: "5px 70px 7px 10px" }}
-                    >
-                      <b>Product</b>
-                    </td>
-                    <td
-                      className="name-col"
-                      style={{ padding: "5px 100px 7px 10px" }}
-                    >
-                      <b>Name</b>
-                    </td>
-                    <td
-                      className="price-col"
-                      style={{ padding: "5px 50px 7px 10px" }}
-                    >
-                      <b>Price</b>
-                    </td>
-                    <td
-                      className="quantity-col"
-                      style={{ padding: "5px 50px 7px 10px" }}
-                    >
-                      <b>Quantity</b>
-                    </td>
-                    <td
-                      className="price-col"
-                      style={{ padding: "5px 50px 7px 10px" }}
-                    >
-                      <b>Price</b>
-                    </td>
-                  </tr>
-                  {items.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          <img
-                            src={item.img}
-                            style={{ height: "10rem" }}
-                            alt=""
-                          ></img>
-                        </td>
-                        <td className="content">{item.name}</td>
-                        <td className="content">{item.price}</td>
-                        <td className="content">{item.quantity}</td>
-                        <td className="content">
-                          {item.quantity * item.price}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <h4 />
-              <h4 />
+            <table className="table table-light- m-1 table-sm">
+              <tbody>
+                <tr>
+                  <td
+                    className="product-col"
+                    style={{ padding: "5px 70px 7px 10px" }}
+                  >
+                    <b>Product</b>
+                  </td>
+                  <td
+                    className="name-col"
+                    style={{ padding: "5px 100px 7px 10px" }}
+                  >
+                    <b>Name</b>
+                  </td>
+                  <td
+                    className="price-col"
+                    style={{ padding: "5px 50px 7px 10px" }}
+                  >
+                    <b>Price</b>
+                  </td>
+                  <td
+                    className="quantity-col"
+                    style={{ padding: "5px 50px 7px 10px" }}
+                  >
+                    <b>Quantity</b>
+                  </td>
+                  <td
+                    className="price-col"
+                    style={{ padding: "5px 50px 7px 10px" }}
+                  >
+                    <b>Price</b>
+                  </td>
+                </tr>
+                {items.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <img
+                          src={item.img}
+                          style={{ height: "10rem" }}
+                          alt=""
+                        ></img>
+                      </td>
+                      <td className="content">{item.name}</td>
+                      <td className="content">{item.price}</td>
+                      <td className="content">{item.quantity}</td>
+                      <td className="content">{item.quantity * item.price}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <h4 />
+            <h4 />
 
-              <div class="card">
+            <div class="card bg-light">
+              <div class="row">
+                <div class="col-xl-9 fs-5">Payment Method</div>
+                <div class="col-sm fs-5">Cash on Delivery</div>
                 <div class="row">
-                  <div class="col-xl-9 fs-5">Phương thức thanh toán</div>
-                  <div class="col-sm fs-5">Thanh toán khi nhận hàng</div>
-                  <div class="card">
-                    <div class="row">
-                      <div class="col-xl-8"></div>
-                      <div class="col-sm fs-5">tong tien hang</div>
-                      <div class="col-sm fs-5">₫{cartTotal * 100.0}</div>
-                    </div>
-                    <div class="row ">
-                      <div class="col-xl-8"></div>
-                      <div class="col fs-5">phi van chyyen</div>
-                      <div class="col-sm fs-5">₫21.600</div>
-                    </div>
-                    <div className="row">
-                      <div class="col-xl-8"></div>
-                      <div class="col-sm fs-5">tong thanh toan:</div>
-                      <div class="col-sm fs-5">₫165.600</div>
-                    </div>
-                  </div>
+                  <div class="col-xl-8"></div>
+                  <div class="col-sm-3 fs-5">Merchandise Subtotal:</div>
+                  <div class="col-sm fs-5">${cartTotal}</div>
+                </div>
+                <div class="row ">
+                  <div class="col-xl-8"></div>
+                  <div class="col-sm-3 fs-5">Shipping Total:</div>
+                  <div class="col-sm fs-5">$160</div>
+                </div>
+                <div className="row">
+                  <div class="col-xl-8"></div>
+                  <div class="col-sm-3 fs-5">Total Payment:</div>
+                  <div class="col-sm fs-5">${cartTotal + 160}</div>
                 </div>
               </div>
 
-                <button class="btn btn-primary w-50" type="submit"
-                onClick={()=> onSubmit(items)}
+              <div className="row ">
+                <div className=" col-sm m-2 d-inline">
+                <a className=''> By clicking "Place Order", you are agreeing to</a>
+              <a className="" href="https://help.shopee.vn/portal/article/77242">
+                   Jewellery's
+                  General Transaction Terms
+                </a>
+                </div>
+                <button
+                  class=" col-sm-3 btn btn-primary m-2"
+                  type="submit"
+                  onClick={() => onSubmit(items)}
                 >
-                Continue to checkout
-              </button>
-              
-             <h4/>
+                  Place Order
+                </button>
+              </div>
+            </div>
+
+            <h4 />
           </div>
         </main>
       </div>
