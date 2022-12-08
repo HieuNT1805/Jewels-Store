@@ -12,8 +12,8 @@ const postNewProduct = (name, material, price, img ) => {return axios.post(url +
     name, material, price, img 
 },{headers:authHeader()})}
 
-const updateProduct = (productId,name, material, price, img ) => {return axios.patch(url + `api/manage/products/${productId}`,{
-    name, material, price, img 
+const updateProduct = (productId,ProName, Material, Price, Img_link ) => {return axios.patch(url + `api/manage/products/${productId}`,{
+    ProName, Material, Price, Img_link
 },{headers:authHeader()})}
 
 
