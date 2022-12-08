@@ -35,7 +35,7 @@ function MaterialTypeProducts() {
                    </div>
                    <div className="price_container">
                        {products.filter(products => products.material.includes(material)).map(product => (
-                           <div key={product._id} className="box">
+                           <div key={product.id} className="box">
                                <div className="name">
                                    <h6>
                                        {product.name}
